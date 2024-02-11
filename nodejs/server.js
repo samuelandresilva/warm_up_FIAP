@@ -1,19 +1,8 @@
-const http = require("http")
-const port = 3000
+import app from "./src/app.js"
 
-const rotes = {
-    '/': 'Node course',
-    '/books': 'On books page',
-    '/authors': 'On authors page',
-    '/editors': 'On editors page',
-    '/about': 'About this project'
-}
+const port = process.env.PORT || 3000
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'})
-    res.end(rotes[req.url])
-})
 
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`🟢 Server is running on http://localhost:` + port)
 })
