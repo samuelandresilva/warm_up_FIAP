@@ -17,9 +17,24 @@ app.get('/books', (req, res) => {
     res.status(200).json(books)
 })
 
+app.get('/books/:id', (req, res) => {
+    const index = searchBook(req.params.id)
+    res.status(200).json(books[index])
+})
+
 app.post('/books', (req, res) => {
     books.push(req.body)
     res.status(201).send()
 })
+
+app.put('/books/:id', (req, res) => {
+    const index = searchBook(req.params.id)
+    books[index].title = req.body.title
+    res.status(200).json(books[index])
+})
+
+function searchBook(id) {
+    return books.findIndex(book => book.id == id)
+}
 
 export default app
